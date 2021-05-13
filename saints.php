@@ -111,7 +111,7 @@ add_shortcode('saints', 'saint_all');
 function saint_all()
 {
     global $parDate;
-    global $presentations;
+    
     ///---
     if (isset($output) && $output !='') {
         $html = get_transient($output);
@@ -201,7 +201,7 @@ function saint_all()
     if (isset($titleOpt) && $titleOpt != '') { // если изменен заголовок, дата
         echo '<h2 class="titleOpt">' . sanitize_text_field($titleOpt) . ' ' . $dateShow . '</h2>';
     }
-    if (isset($shortinfo) && $shortinfo != '') {
+    if (isset($shortinfo) && $shortinfo != '') { $presentations = shortinfof();
         echo '<div class="presentations-s">' . $presentations . '</div>';
     }
     for ($s = 0; $s < $cnt; $s++) {
