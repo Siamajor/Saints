@@ -193,10 +193,10 @@ function saint_all()
     }
     $cnt = count($title, COUNT_RECURSIVE);
 
-    $dateTitf =  date_i18n('j F Y', strtotime($parDate), false);
+    $dateTitf =  wp_date('j F Y', strtotime($parDate));
     if ($titleData) {
         $dateShow = '<span class="dateShow">&nbsp;&nbsp; ( ' . $dateTitf . ' )</span>';
-    }
+    } else {$dateShow = '';}
     echo '<div id="saints">';
     if (isset($titleOpt) && $titleOpt != '') { // если изменен заголовок, дата
         echo '<h2 class="titleOpt">' . sanitize_text_field($titleOpt) . ' ' . $dateShow . '</h2>';
