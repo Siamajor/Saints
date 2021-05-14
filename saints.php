@@ -106,8 +106,8 @@ if (isset($query['date'])) {
 if (!$parDate && $parDate = '') $parDate = date("Y-m-d");
 $parDate = sanitize_option('date_format', $parDate,);
 
-//** [saints] */
-add_shortcode('saints', 'sia_saint_all');
+//** [sia-saints] */
+add_shortcode('sia-saints', 'sia_saint_all');
 function sia_saint_all()
 {
     global $parDate;
@@ -250,8 +250,8 @@ function sia_saint_all()
     ob_flush();
 }
 
-//*** [shortinfo] */
-add_shortcode('shortinfo', 'sia_shortinfof');
+//*** [sia-shortinfo] */
+add_shortcode('sia-shortinfo', 'sia_shortinfof');
 function sia_shortinfof()
 {
     global $parDate;
@@ -288,8 +288,8 @@ function sia_shortinfof()
     ob_flush();
 }
 
-//*** [s-calendar] */
-add_shortcode('s-calendar', 'sia_skalendar');
+//*** [sia-calendar] */
+add_shortcode('sia-calendar', 'sia_skalendar');
 function sia_skalendar()
 {
     echo '<div id="scalendar"></div>';
