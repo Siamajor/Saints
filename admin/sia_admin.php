@@ -38,7 +38,7 @@ function fill_saints_field_text()
     } else {
         $textTop = '';
     }
-    $dir_files = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/img';
+    $dir_files = wp_get_upload_dir()['basedir'] . '/saints-cache/img';
     if (is_dir($dir_files)) {
         $fff = count(glob("$dir_files/*"));
     } else {$fff = 0;}
@@ -123,7 +123,7 @@ function fill_saints_field3()
         $showicons = '';
     }
     //** подсчет количества картинок */
-    $dir_file = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/img';
+    $dir_file = wp_get_upload_dir()['basedir'] . '/saints-cache/img';
     $ff = count(glob("$dir_file/*"));
     if ($ff == 0) { //** если нет картинок */
         $stats = 'disabled';
@@ -148,7 +148,7 @@ function fill_saints_field5()
     //** обнаружение .zip */
     $val = get_option('saints_option');
     $link = $val ? $val['link'] : null;
-    $dir_file = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/';
+    $dir_file = wp_get_upload_dir()['basedir'] . '/saints-cache/';
     $filename = $dir_file . '/img.zip';
     if (is_resource($zip = zip_open($filename))) {
         zip_close($zip);
@@ -156,7 +156,7 @@ function fill_saints_field5()
     } else {
         $errzip = '';
     }
-    $dir_files = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/img';
+    $dir_files = wp_get_upload_dir()['basedir'] . '/saints-cache/img';
     if (is_dir($dir_files)) {
         $fff = count(glob("$dir_files/*"));
     }
@@ -192,7 +192,7 @@ function fill_saints_field4()
         $deleteIcons = '';
     }
     //** подсчет количества картинок */
-    $dir_file = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/img';
+    $dir_file = wp_get_upload_dir()['basedir'] . '/saints-cache/img';
     $ff = count(glob("$dir_file/*"));
 
     if ($ff != 0) { //** если есть картинки */
@@ -245,13 +245,13 @@ function saints_sanitize_callback($options)
 //** распаковка архива */
 $val = get_option('saints_option');
 $link = $val ? $val['link'] : null;
-$dir_file = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/';
+$dir_file = wp_get_upload_dir()['basedir'] . '/saints-cache/';
 $filename = $dir_file . '/img.zip';
 if ($filename && $link == 2) {
-    unzipIcons();
+    sia_unzipIcons();
 }
 
-function unzipIcons()
+function sia_unzipIcons()
 {
     if (!function_exists('unzip_file')) {
         require_once(ABSPATH . 'wp-admin/includes/file.php');
@@ -260,8 +260,8 @@ function unzipIcons()
     if (!$wp_filesystem) {
         WP_Filesystem();
     }
-    $file = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/img.zip';
-    $to   = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache/img/';
+    $file = wp_get_upload_dir()['basedir'] . '/saints-cache/img.zip';
+    $to   = wp_get_upload_dir()['basedir'] . '/saints-cache/img/';
     if (is_file($file)) {
         unzip_file($file, $to);
         wp_delete_file($file);
@@ -277,17 +277,17 @@ if (isset($val['deleteIcons'])) {
 if (isset($val['showicons'])) $showicons = $val['showicons'];
 
 if ($deleteIcons == 1) {
-    $folder_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache' . DIRECTORY_SEPARATOR . 'img';
+    $folder_path = wp_get_upload_dir()['basedir'] . '/saints-cache' . DIRECTORY_SEPARATOR . 'img';
     if (is_dir($folder_path)) {
-        deleteIcons();
+        sia_deleteIcons();
         if (isset($showicons)) delete_option('showicons');
         if (isset($deleteIcons)) delete_option('deleteIcons');
     }
 }
 
-function deleteIcons()
+function sia_deleteIcons()
 {
-    $dir = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/uploads/saints-cache' . DIRECTORY_SEPARATOR . 'img';
+    $dir = wp_get_upload_dir()['basedir'] . '/saints-cache' . DIRECTORY_SEPARATOR . 'img';
     if (is_dir($dir)) {
         $it = new RecursiveDirectoryIterator($dir);
         $files = new RecursiveIteratorIterator(
