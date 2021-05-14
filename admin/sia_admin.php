@@ -209,17 +209,18 @@ function fill_saints_field4()
     $rightbl = __('<h4 style="text-align:center;">Спасибо за проявленный интерес к плагину Saints!</h4>
     Дорогие братия и сестры!<br />Надеюсь, что мой плагин окажется для Вас полезным!<br />Плагин Saints задумывался как дополнение к календарю на каждый день, чтобы дать более полное представление о Святых, чьи имена почитаются в этот день.<br />В основу представленных настроек плагина легли пожелания вебмастеров Православных сайтов.<br />Плагин использует API сайта azbyka.ru для получения необходимых данных.<br />Плагин предоставляет 3 шорткода:
     <ul>
-        <li><strong>[s-calendar]</strong> - для вставки виджета календаря;</li>
-        <li><strong>[shortinfo]</strong> - для вставки краткой информации дня;</li>
-        <li><strong>[saints]</strong> - для вставки жизнеописания Святых</li>
+        <li><strong>[sia-calendar]</strong> - для вставки виджета календаря;</li>
+        <li><strong>[sia-shortinfo]</strong> - для вставки краткой информации дня;</li>
+        <li><strong>[sia-saints]</strong> - для вставки жизнеописания Святых</li>
     </ul>
     <br />Если виджет календаря не установлен, при загрузке страницы с шорткодом описания жития будет отображаться информация текущего дня.<br />Если у Вас возникли вопросы или пожелания, вы можете направить их на siamajor@ukr.net<br/><strong>Береги Вас Господь!</strong>', 'saints');
+    $myphoto = '<img src="' . plugins_url('saints/admin/css/435.png') . '" class="imgmy">';
 ?>
     <div class="sia-delete">
         <label class="checkbox"><input type="checkbox" <?php echo $stats ?> name="saints_option[deleteIcons]" value="1" <?php checked(1, $deleteIcons) ?> /><span><em><strong><?php echo $udal; ?></strong></em></span></label>
         <div style="<?php echo $stile; ?>" class=""><?php echo $udalop . ' (' . $ff . ' шт.)'; ?></div>
     </div>
-    <div class="attention_admin"><?php echo $rightbl; ?></div>
+    <div class="attention_admin"><?php echo $myphoto; echo $rightbl; ?></div>
 <?php
 }
 
