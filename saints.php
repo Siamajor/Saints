@@ -33,14 +33,14 @@ if (!defined('ABSPATH')) {
 
 // define( 'saints', plugin_dir_path( __FILE__ ) );
 
-add_action('wp_enqueue_scripts', 'saints_style');
-function saints_style()
+add_action('wp_enqueue_scripts', 'sia_saints_style');
+function sia_saints_style()
 {
     wp_enqueue_style('sia_saints', plugins_url('css/sia_saints.css', __FILE__));
 }
 
-add_action('wp_enqueue_scripts', 'calendar_style');
-function calendar_style()
+add_action('wp_enqueue_scripts', 'sia_calendar_style');
+function sia_calendar_style()
 {
     wp_enqueue_style('sia_scalendar', plugins_url('css/datepicker.min.css', __FILE__));
 }
@@ -107,8 +107,8 @@ if (!$parDate && $parDate = '') $parDate = date("Y-m-d");
 $parDate = sanitize_option('date_format', $parDate,);
 
 //** [saints] */
-add_shortcode('saints', 'saint_all');
-function saint_all()
+add_shortcode('saints', 'sia_saint_all');
+function sia_saint_all()
 {
     global $parDate;
     
@@ -201,7 +201,7 @@ function saint_all()
     if (isset($titleOpt) && $titleOpt != '') { // если изменен заголовок, дата
         echo '<h2 class="titleOpt">' . sanitize_text_field($titleOpt) . ' ' . $dateShow . '</h2>';
     }
-    if (isset($shortinfo) && $shortinfo != '') { $presentations = shortinfof();
+    if (isset($shortinfo) && $shortinfo != '') { $presentations = sia_shortinfof();
         echo '<div class="presentations-s">' . $presentations . '</div>';
     }
     for ($s = 0; $s < $cnt; $s++) {
@@ -251,8 +251,8 @@ function saint_all()
 }
 
 //*** [shortinfo] */
-add_shortcode('shortinfo', 'shortinfof');
-function shortinfof()
+add_shortcode('shortinfo', 'sia_shortinfof');
+function sia_shortinfof()
 {
     global $parDate;
     global $presentations;
@@ -296,7 +296,7 @@ function sia_skalendar()
 }
 
 //*** активация */
-function saints_activate()
+function sia_saints_activate()
 {
     $upload = wp_upload_dir();
     $upload_dir = $upload['basedir'];
@@ -307,5 +307,5 @@ function saints_activate()
     }
     load_plugin_textdomain( 'saints', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-register_activation_hook(__FILE__, 'saints_activate');
+register_activation_hook(__FILE__, 'sia_saints_activate');
 activate_plugins('saints/saints.php');
