@@ -212,7 +212,7 @@ function sia_saint_all()
         if (isset($showicons) && $showicons != '') { // если опция 'показывать миниатюры' включена
             if (isset($image[$s])) {
                 if ($link == 2) { // если с сервера 
-                    $imageurl = '<img src="/wp-content/uploads/saints-cache/img/' . $image[$s] . '" alt="' . $title[$s] . '"/>';
+                    $imageurl = '<img src="' . wp_get_upload_dir()['baseurl'] . '/saints-cache/img/' . $image[$s] . '" alt="' . $title[$s] . '"/>';
                 } else { // если с azbyka
                     $imageurl = '<img src="https://azbyka.ru/days/assets/img/saints/' . $saint_id[$s] . '/' . $image[$s] . '" alt="' . $title[$s] . '" rel="nofollow"/>';
                 }
