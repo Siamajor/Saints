@@ -23,7 +23,7 @@ Biography of Saints for any date
 * If the calendar widget is not installed, the data for the current day will be displayed.
 
 * In order to reduce the load on the server and speed up the page loading, you can download an archive of prepared miniatures of the Saints' icons and upload it to the /wp-content/uploads/saints-cache/directory in .zip format. When you select the appropriate source of images on the plugin settings page, the archive will be unpacked into the /wp-content/uploads/saints-cache/img/ directory
-* Download address for img.zip archive (82.66 MB): https://xn--b1aplbci.xn--j1amh/wp-content/uploads/saints-cache/111/img.zip
+* Download address for img.zip archive (82.66 MB): https://xn--b1aplbci.xn--j1amh/vebmasteru/
 * Plugin in Russian and Ukrainian
 
 -- UA --
@@ -36,7 +36,7 @@ Biography of Saints for any date
 * Якщо не встановлено віджет календаря, будуть виводитися дані на поточний день.
 
 * З метою зменшення навантаження на сервер і прискорення завантаження сторінки ви можете скачати собі архів підготовлених мініатюр ікон святих і завантажити його в директорію /wp-content/uploads/saints-cache/ в форматі .zip. При виборі відповідного джерела картинок на сторінці налаштувань плагіна архів буде розпакований в директорію /wp-content/uploads/saints-cache/img/
-* Адреса для скачування архіву img.zip (82.66 мб): https://xn--b1aplbci.xn--j1amh/wp-content/uploads/saints-cache/111/img.zip
+* Адреса для скачування архіву img.zip (82.66 мб): https://xn--b1aplbci.xn--j1amh/vebmasteru/
 * Плагін російською та українською мовами
 
 -- RU --
@@ -49,7 +49,7 @@ Biography of Saints for any date
 * Если не установлен виджет календаря, будут выводиться данные на текущий день.
 
 * В целях уменьшения нагрузки на сервер и ускорения загрузки страницы вы можете скачать себе архив подготовленных миниатюр икон Святых и загрузить его в директорию /wp-content/uploads/saints-cache/  в формате .zip. При выборе соответствующего источника картинок на странице настроек плагина архив будет распакован в директорию /wp-content/uploads/saints-cache/img/ 
-* Адрес для скачивания архива img.zip (82.66 мб): https://xn--b1aplbci.xn--j1amh/wp-content/uploads/saints-cache/111/img.zip
+* Адрес для скачивания архива img.zip (82.66 мб): https://xn--b1aplbci.xn--j1amh/vebmasteru/
 * Плагин на русском и украинском языках
 
 == Installation ==
