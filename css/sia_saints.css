@@ -126,10 +126,11 @@
 }
 
 .presentations div:nth-child(1) {
-  font-size: 165%;
+  /*font-size: 165%;
   font-family: "Monomakh Unicode";
   color: inherit;
-  font-weight: 600;
+  font-weight: 600;*/
+  display: none;
 }
 .dateShow {
   font-size: 24px;
