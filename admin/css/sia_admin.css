@@ -326,3 +326,8 @@ text-decoration: none;
     padding: 0 7px;
     margin: 0 8px 0 0;
   }
+.imgmy {
+    width: 70px;
+    float: right;
+    border-radius: 7px;
+}
