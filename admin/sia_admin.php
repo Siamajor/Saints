@@ -103,7 +103,7 @@ function fill_saints_field_shortinfo()
         $shortinfo = '';
     }
     $pokinfo = __(' показывать информацию', 'saints');
-    $esinfo = __('Если отмечено, после заголовка будет показана краткая информация на выбранный день<br />Также можно краткую информацию получить с помощью шорткода [shortinfo] ', 'saints');
+    $esinfo = __('Если отмечено, после заголовка будет показана краткая<br/>информация на выбранный день. Также можно<br/>краткую информацию получить с помощью шорткода [shortinfo] ', 'saints');
 ?>
     <div class="sia">
         <label class="checkbox"><input type="checkbox" name="saints_option[shortinfo]" value="1" <?php checked(1, $shortinfo) ?> /><span><em><strong><?php echo $pokinfo; ?></strong></em></span></label>
@@ -134,7 +134,7 @@ function fill_saints_field3()
         $stats = '';
     }
     $pokmin = __(' показывать миниатюры', 'saints');
-    $esmin = __('Если отмечено, в текст будут вставлены изображения икон Святых, если есть', 'saints');
+    $esmin = __('Если отмечено, в текст будут вставлены<br/>изображения икон Святых, если есть', 'saints');
 ?>
     <div class="sia">
         <label class="checkbox"><input id="showmin" type="checkbox" <?php echo $stats ?> name="saints_option[showicons]" value="1" <?php checked(1, $showicons) ?> /><span><em><strong><?php echo $pokmin; ?></strong></em></span></label>
@@ -147,7 +147,7 @@ function fill_saints_field5()
 {
     //** обнаружение .zip */
     $val = get_option('saints_option');
-    $link = $val ? $val['link'] : null;
+    if(isset($val['link'])) {$link = $val['link'];} else {$link = 1;} 
     $dir_file = wp_get_upload_dir()['basedir'] . '/saints-cache/';
     $filename = $dir_file . '/img.zip';
     if (is_resource($zip = zip_open($filename))) {
@@ -206,14 +206,14 @@ function fill_saints_field4()
     $udal = __(' удаление ', 'saints');
     $udalop = __('Вы можете удалить папку с миниатюрами, отметив эту опцию.<br />ВНИМАНИЕ! <strong>Это действие нельзя отменить!</strong>', 'saints');
 
-    $rightbl = __('<h4 style="text-align:center;">Спасибо за проявленный интерес к плагину Saints!</h4>
-    Дорогие братия и сестры!<br />Надеюсь, что мой плагин окажется для Вас полезным!<br />Плагин Saints задумывался как дополнение к календарю на каждый день, чтобы дать более полное представление о Святых, чьи имена почитаются в этот день.<br />В основу представленных настроек плагина легли пожелания вебмастеров Православных сайтов.<br />Плагин использует API сайта azbyka.ru для получения необходимых данных.<br />Плагин предоставляет 3 шорткода:
+    $rightbl = __("<h4 style='text-align:center;'>Спасибо за проявленный интерес к плагину Saints!</h4>
+    Дорогие братия и сестры!<br />Надеюсь, что мой плагин окажется для Вас полезным!<br />Плагин Saints задумывался как дополнение к календарю на каждый день, чтобы дать более полное представление о Святых, чьи имена почитаются в этот день. Плагин предоставляет 3 шорткода:
     <ul>
-        <li><strong>[sia-calendar]</strong> - для вставки виджета календаря;</li>
-        <li><strong>[sia-shortinfo]</strong> - для вставки краткой информации дня;</li>
-        <li><strong>[sia-saints]</strong> - для вставки жизнеописания Святых</li>
+        <li><strong>[sia-calendar]</strong> - для вывода виджета календаря;</li>
+        <li><strong>[sia-shortinfo]</strong> - для вывода краткой информации дня;</li>
+        <li><strong>[sia-saints]</strong> - для вывода жизнеописания Святых</li>
     </ul>
-    <br />Если виджет календаря не установлен, при загрузке страницы с шорткодом описания жития будет отображаться информация текущего дня.<br />Если у Вас возникли вопросы или пожелания, вы можете направить их на siamajor@ukr.net<br/><strong>Береги Вас Господь!</strong>', 'saints');
+    Если виджет календаря не установлен, при загрузке страницы с шорткодом описания жития будет отображаться информация текущего дня.<br /><em>Если у Вас возникли вопросы или пожелания, вы можете направить их на siamajor@ukr.net</em><br/><strong>Береги Вас Господь!</strong>", 'saints');
     $myphoto = '<img src="' . plugins_url('saints/admin/css/435.png') . '" class="imgmy">';
 ?>
     <div class="sia-delete">

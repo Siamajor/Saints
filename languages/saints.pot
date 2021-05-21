@@ -3,16 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-13 19:06+0000\n"
+"POT-Creation-Date: 2021-05-21 03:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"MIME-Version: 1.0\n"
+"MIME-Version: 1.1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"\n"
 "X-Generator: Loco https://localise.biz/"
 
 #: admin/sia_admin.php:87
@@ -47,27 +46,24 @@ msgstr ""
 
 #: admin/sia_admin.php:209
 msgid ""
-"<h4 style=\"text-align:center;\">Спасибо за проявленный интерес к плагину "
+"<h4 style='text-align:center;'>Спасибо за проявленный интерес к плагину "
 "Saints!</h4>\n"
 "    Дорогие братия и сестры!<br />Надеюсь, что мой плагин окажется для Вас "
 "полезным!<br />Плагин Saints задумывался как дополнение к календарю на "
 "каждый день, чтобы дать более полное представление о Святых, чьи имена "
-"почитаются в этот день.<br />В основу представленных настроек плагина легли "
-"пожелания вебмастеров Православных сайтов.<br />Плагин использует API сайта "
-"azbyka.ru для получения необходимых данных.<br />Плагин предоставляет 3 "
-"шорткода:\n"
+"почитаются в этот день. Плагин предоставляет 3 шорткода:\n"
 "    <ul>\n"
-"        <li><strong>[sia-calendar]</strong> - для вставки виджета календаря;"
+"        <li><strong>[sia-calendar]</strong> - для вывода виджета календаря;"
 "</li>\n"
-"        <li><strong>[sia-shortinfo]</strong> - для вставки краткой информации "
+"        <li><strong>[sia-shortinfo]</strong> - для вывода краткой информации "
 "дня;</li>\n"
-"        <li><strong>[sia-saints]</strong> - для вставки жизнеописания Святых</li>"
-"\n"
+"        <li><strong>[sia-saints]</strong> - для вывода жизнеописания "
+"Святых</li>\n"
 "    </ul>\n"
-"    <br />Если виджет календаря не установлен, при загрузке страницы с "
-"шорткодом описания жития будет отображаться информация текущего дня.<br />"
-"Если у Вас возникли вопросы или пожелания, вы можете направить их на "
-"siamajor@ukr.net<br/><strong>Береги Вас Господь!</strong>"
+"    Если виджет календаря не установлен, при загрузке страницы с шорткодом "
+"описания жития будет отображаться информация текущего дня.<br /><em>Если у "
+"Вас возникли вопросы или пожелания, вы можете направить их на siamajor@ukr."
+"net</em><br/><strong>Береги Вас Господь!</strong>"
 msgstr ""
 
 #. Author URI of the plugin
@@ -75,7 +71,7 @@ msgid "https://github.com/Siamajor"
 msgstr ""
 
 #. URI of the plugin
-msgid "https://github.com/Siamajor/Saints"
+msgid "https://wordpress.org/plugins/saints"
 msgstr ""
 
 #. Name of the plugin
@@ -119,7 +115,7 @@ msgstr ""
 
 #: admin/sia_admin.php:137
 msgid ""
-"Если отмечено, в текст будут вставлены изображения икон Святых, если есть"
+"Если отмечено, в текст будут вставлены<br/>изображения икон Святых, если есть"
 msgstr ""
 
 #: admin/sia_admin.php:88
@@ -128,8 +124,8 @@ msgstr ""
 
 #: admin/sia_admin.php:106
 msgid ""
-"Если отмечено, после заголовка будет показана краткая информация на "
-"выбранный день<br />Также можно краткую информацию получить с помощью "
+"Если отмечено, после заголовка будет показана краткая<br/>информация на "
+"выбранный день. Также можно<br/>краткую информацию получить с помощью "
 "шорткода [shortinfo] "
 msgstr ""
 

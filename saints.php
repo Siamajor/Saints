@@ -1,10 +1,10 @@
 <?php
 /*
     Plugin Name: Saints
-    Plugin URI: https://github.com/Siamajor/Saints
+    Plugin URI: https://wordpress.org/plugins/saints
     Description: Плагин выводит жизнеописания Святых на любую дату.
     Author: SIA
-    Version: 1.0.9
+    Version: 1.10.1
     Author URI: https://github.com/Siamajor
     License:     GPL2
     Text Domain: saints
@@ -99,11 +99,11 @@ global $parDate;
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 $parts = parse_url($url);
-parse_str($parts['query'], $query);
+if (isset($parts['query'])) parse_str($parts['query'], $query);
 if (isset($query['date'])) {
     $parDate = $query['date'];
 }
-if (!$parDate && $parDate = '') $parDate = date("Y-m-d");
+if (!$parDate) $parDate = date("Y-m-d");
 $parDate = sanitize_option('date_format', $parDate,);
 
 //** [sia-saints] */
@@ -192,14 +192,14 @@ function sia_saint_all()
         $shortinfo = '';
     }
     $cnt = count($title, COUNT_RECURSIVE);
-
+    
     $dateTitf =  wp_date('j F Y', strtotime($parDate));
     if ($titleData) {
-        $dateShow = '<span class="dateShow">&nbsp;&nbsp; ( ' . $dateTitf . ' )</span>';
+        $dateShow = '<span class="dateShow">&nbsp;&nbsp; ( ' . $dateTitf . ' )</span>'; 
     } else {$dateShow = '';}
     echo '<div id="saints">';
     if (isset($titleOpt) && $titleOpt != '') { // если изменен заголовок, дата
-        echo '<h2 class="titleOpt">' . sanitize_text_field($titleOpt) . ' ' . $dateShow . '</h2>';
+        echo '<h2 class="titleOpt">' . sanitize_text_field($titleOpt) . ' ' . $dateShow . '</h2>'; 
     }
     if (isset($shortinfo) && $shortinfo != '') { $presentations = sia_shortinfof();
         echo '<div class="presentations-s">' . $presentations . '</div>';
