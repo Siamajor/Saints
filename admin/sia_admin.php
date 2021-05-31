@@ -1,6 +1,6 @@
 <?php
 /*
-    Plugin Name: Saints
+    
 	Admin page
     Author URI: https://github.com/Siamajor
     License:     GPL2
@@ -16,7 +16,7 @@ require_once(ABSPATH . 'wp-admin/includes/file.php');
 function saints_plugin_settings()
 {
     // параметры: $option_group, $saints_option, $saints_sanitize_callback
-    register_setting('option_group', 'saints_option', 'saints_sanitize_callback');
+    register_setting('saints_group', 'saints_option', 'saints_sanitize_callback');
 
     // секция
     add_settings_section('section_id1', '', '', 'saints_page');
@@ -43,7 +43,7 @@ function fill_saints_field_text()
         $fff = count(glob("$dir_files/*"));
     } else {$fff = 0;}
     if (!isset($fff) || $fff == 0) {
-        $textTop = __('ВНИМАНИЕ! Для показа миниатюр икон в описании жития Святых архив с миниатюрами необходимо загрузить в формате zip с именем img (img.zip) в папку /wp-content/uploads/saints-cache/ на вашем сервере.<br />Это займет около 83мб (более 2700 картинок) на вашем диске.<br />ЛИБО подгружать картинки с внешнего источника - сайта azbуka.ru.<br />', 'saints');
+        $textTop = __("ВНИМАНИЕ! Для показа миниатюр икон в описании жития Святых архив с миниатюрами<br/> необходимо загрузить в формате zip с именем img (img.zip) в папку<br/><strong>/wp-content/uploads/saints-cache/</strong> на вашем сервере.<br />Это займет около 83мб (более 2700 картинок) на вашем диске.<br />ЛИБО подгружать картинки с внешнего источника - сайта azbуka.ru.<br/>Архив img.zip можно скачать <a href='https://xn--b1aplbci.xn--j1amh/vebmasteru/plugin-saints/' target='_blank'>отсюда</a>", 'saints');
     } else {
         $textTop = __('Загружено на ваш сервер ', 'saints')
             . $fff . __(' миниатюр.<br/>Вы можете использовать ваш сервер как источник миниатюр для описаний', 'saints');
@@ -55,7 +55,7 @@ function fill_saints_field_text()
 }
 ## текст поле
 function fill_saints_field1()
-{
+{   
     $val = get_option('saints_option');
     $titleOpt = $val ? $val['titleOpt'] : null;
     $plshldTitle = 'Заголовок';
@@ -75,20 +75,20 @@ function fill_saints_field_data()
     $val = get_option('saints_option');
     if (isset($val['titleData'])) {
         $titleData = $val['titleData'];
-    } else {
-        $titleData = '';
-    }
-    $titleOpt = $val ? $val['titleOpt'] : null;
-    if (!$titleOpt) {
-        $stats = 'disabled';
-    } else {
-        $stats = '';
-    }
+    } 
+else {
+$titleData = '';
+}
+
+
+
+
+
     $pokDate = __('  показывать дату', 'saints');
     $esPok = __('Если отмечено, после заголовка будет показана дата', 'saints');
 ?>
     <div class="sia">
-        <label class="checkbox"><input type="checkbox" <?php echo $stats ?> name="saints_option[titleData]" value="1" <?php checked(1, $titleData) ?> /><span><em><strong><?php echo $pokDate; ?></strong></em></span></label>
+        <label class="checkbox"><input type="checkbox" name="saints_option[titleData]" value="1" <?php checked(1, $titleData) ?> /><span><em><strong><?php echo $pokDate; ?></strong></em></span></label>
         <div><?php echo $esPok; ?></div>
     </div>
 <?php
@@ -119,25 +119,16 @@ function fill_saints_field3()
     if (isset($val['link'])) $link = $val['link'];
     if (isset($val['showicons'])) {
         $showicons = $val['showicons'];
-    } else {
-        $showicons = '';
-    }
+    } else {$showicons = '';}
+
+
     //** подсчет количества картинок */
-    $dir_file = wp_get_upload_dir()['basedir'] . '/saints-cache/img';
-    $ff = count(glob("$dir_file/*"));
-    if ($ff == 0) { //** если нет картинок */
-        $stats = 'disabled';
-    } else {
-        $stats = '';
-    }
-    if ($link == '1') {
-        $stats = '';
-    }
+    
     $pokmin = __(' показывать миниатюры', 'saints');
     $esmin = __('Если отмечено, в текст будут вставлены<br/>изображения икон Святых, если есть', 'saints');
 ?>
     <div class="sia">
-        <label class="checkbox"><input id="showmin" type="checkbox" <?php echo $stats ?> name="saints_option[showicons]" value="1" <?php checked(1, $showicons) ?> /><span><em><strong><?php echo $pokmin; ?></strong></em></span></label>
+        <label class="checkbox"><input id="showmin" type="checkbox" name="saints_option[showicons]" value="1" <?php checked(1, $showicons) ?> /><span><em><strong><?php echo $pokmin; ?></strong></em></span></label>
         <div><?php echo $esmin; ?></div>
     </div>
 <?php
@@ -164,7 +155,7 @@ function fill_saints_field5()
         $stats = '';} else { $stats = 'disabled';}
        if ($errzip !='') {$stats = '';}
     $vs = __(' ваш сервер ', 'saints');
-    $minch = __('Вы можете загрузить уже готовый архив (img.zip) с миниатюрами в папку на Вашем сервере<br/>/wp-content/uploads/saints-cache/<br/>и использовать ее как источник миниатюр для ускорения загрузки страницы.<br/>Если Вы выберете azbyka.ru, то картинки будут подгружаться с этого сервера.', 'saints');
+    $minch = __("Вы можете загрузить уже готовый архив (img.zip) с миниатюрами в папку на Вашем сервере<br/>/wp-content/uploads/saints-cache/<br/>и использовать ее как источник миниатюр для ускорения загрузки страницы.<br/>Если Вы выберете azbyka.ru, то картинки будут подгружаться с этого сервера.", 'saints');
 ?>
 
 
@@ -206,21 +197,29 @@ function fill_saints_field4()
     $udal = __(' удаление ', 'saints');
     $udalop = __('Вы можете удалить папку с миниатюрами, отметив эту опцию.<br />ВНИМАНИЕ! <strong>Это действие нельзя отменить!</strong>', 'saints');
 
-    $rightbl = __("<h4 style='text-align:center;'>Спасибо за проявленный интерес к плагину Saints!</h4>
-    Дорогие братия и сестры!<br />Надеюсь, что мой плагин окажется для Вас полезным!<br />Плагин Saints задумывался как дополнение к календарю на каждый день, чтобы дать более полное представление о Святых, чьи имена почитаются в этот день. Плагин предоставляет 3 шорткода:
+    echo '<div class="attention_admin">';
+    $rightbl1 = __("<h4 style='text-align:center;'>Спасибо за проявленный интерес к плагину Saints!</h4>
+    Дорогие братия и сестры!<br />Надеюсь, что мой плагин окажется для Вас полезным!<br />Плагин Saints  предоставляет 3 шорткода:
     <ul>
         <li><strong>[sia-calendar]</strong> - для вывода виджета календаря;</li>
         <li><strong>[sia-shortinfo]</strong> - для вывода краткой информации дня;</li>
         <li><strong>[sia-saints]</strong> - для вывода жизнеописания Святых</li>
     </ul>
-    Если виджет календаря не установлен, при загрузке страницы с шорткодом описания жития будет отображаться информация текущего дня.<br /><em>Если у Вас возникли вопросы или пожелания, вы можете направить их на siamajor@ukr.net</em><br/><strong>Береги Вас Господь!</strong>", 'saints');
+    Если виджет календаря не установлен, при загрузке страницы с шорткодом описания жития будет отображаться информация текущего дня.", 'saints');
+
+    $rightbl2 = __("<br /><em>Если у Вас возникли вопросы или пожелания, вы можете направить их на siamajor@ukr.net</em><br/><strong>Береги Вас Господь!</strong>", 'saints');
     $myphoto = '<img src="' . plugins_url('saints/admin/css/435.png') . '" class="imgmy">';
+
+    echo '<div id="rightbl">
+<div>' .  $rightbl1 . '</div><div>' . $myphoto . '</div><div>' . $rightbl2 . '</div>
+</div>';
+echo '</div>';
 ?>
     <div class="sia-delete">
         <label class="checkbox"><input type="checkbox" <?php echo $stats ?> name="saints_option[deleteIcons]" value="1" <?php checked(1, $deleteIcons) ?> /><span><em><strong><?php echo $udal; ?></strong></em></span></label>
         <div style="<?php echo $stile; ?>" class=""><?php echo $udalop . ' (' . $ff . ' шт.)'; ?></div>
     </div>
-    <div class="attention_admin"><?php echo $myphoto; echo $rightbl; ?></div>
+   
 <?php
 }
 

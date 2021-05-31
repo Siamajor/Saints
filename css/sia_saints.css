@@ -25,6 +25,7 @@
   font-family: "Monomakh Unicode" !important;
   text-decoration: none;
   padding-top: 20px;
+  color: brown;
 }
 .titleOpt {
   font-size: 32px;
@@ -141,6 +142,8 @@
 }
 
 .dateShow {
-  font-size: 24px;
+  font-size: 30px;
   padding-left: 30px;
+  font-family: 'Monomakh Unicode';
+  color: inherit;
 }

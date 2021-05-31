@@ -4,7 +4,7 @@
     Plugin URI: https://wordpress.org/plugins/saints
     Description: Плагин выводит жизнеописания Святых на любую дату.
     Author: SIA
-    Version: 1.10.1
+    Version: 1.10.4
     Author URI: https://github.com/Siamajor
     License:     GPL2
     Text Domain: saints
@@ -31,18 +31,16 @@ if (!defined('ABSPATH')) {
     die('Sorry, you are not allowed to access this page directly.');
 }
 
-// define( 'saints', plugin_dir_path( __FILE__ ) );
-
 add_action('wp_enqueue_scripts', 'sia_saints_style');
 function sia_saints_style()
 {
-    wp_enqueue_style('sia_saints', plugins_url('css/sia_saints.css', __FILE__));
+    wp_register_style('sia_saints', plugins_url('css/sia_saints.css', __FILE__));
 }
 
 add_action('wp_enqueue_scripts', 'sia_calendar_style');
 function sia_calendar_style()
 {
-    wp_enqueue_style('sia_scalendar', plugins_url('css/datepicker.min.css', __FILE__));
+    wp_register_style('sia_scalendar', plugins_url('css/datepicker.min.css', __FILE__));
 }
 
 add_action('admin_enqueue_scripts', 'sia_admin_style');
@@ -54,14 +52,13 @@ function sia_admin_style()
 add_action('wp_enqueue_scripts', 'sia_scalendar');
 function sia_scalendar()
 {
-    wp_enqueue_script('sia_scalendar', plugins_url('js/datepicker.min.js', __FILE__));
+    wp_register_script('sia_scalendar', plugins_url('js/datepicker.min.js', __FILE__));
 }
 
 add_action('wp_enqueue_scripts', 'sia_saints');
 function sia_saints()
 {
-    wp_enqueue_script('sia_saints', plugins_url('js/sia_saints.js', __FILE__));
-    // wp_localize_script('sia_saints', 'adminurl', array('url_admin' => admin_url('admin-ajax.php')));
+    wp_register_script('sia_saints', plugins_url('js/sia_saints.js', __FILE__));
 }
 
 add_action('admin_enqueue_scripts', 'sia_admin');
@@ -84,9 +81,9 @@ function saints_options_page_output()
 ?>
     <div class="wrap">
         <h2><?php echo get_admin_page_title() ?></h2>
-        <form action="options.php" method="POST">
+        <form id="saints-form" action="options.php" method="POST">
             <?php
-            settings_fields('option_group');     // скрытые защитные поля
+            settings_fields('saints_group');     // скрытые защитные поля
             do_settings_sections('saints_page'); // секции с настройками (опциями).
             submit_button();
             ?>
@@ -110,10 +107,13 @@ $parDate = sanitize_option('date_format', $parDate,);
 add_shortcode('sia-saints', 'sia_saint_all');
 function sia_saint_all()
 {
+    wp_enqueue_style('sia_scalendar');
+    wp_enqueue_style('sia_saints');
+    wp_enqueue_script('sia_saints');
+    wp_enqueue_script('sia_scalendar');
     global $parDate;
-    
-    ///---
-    if (isset($output) && $output !='') {
+
+    if (isset($output) && $output != '') {
         $html = get_transient($output);
         echo $html;
         return;
@@ -192,16 +192,19 @@ function sia_saint_all()
         $shortinfo = '';
     }
     $cnt = count($title, COUNT_RECURSIVE);
-    
     $dateTitf =  wp_date('j F Y', strtotime($parDate));
     if ($titleData) {
-        $dateShow = '<span class="dateShow">&nbsp;&nbsp; ( ' . $dateTitf . ' )</span>'; 
-    } else {$dateShow = '';}
-    echo '<div id="saints">';
-    if (isset($titleOpt) && $titleOpt != '') { // если изменен заголовок, дата
-        echo '<h2 class="titleOpt">' . sanitize_text_field($titleOpt) . ' ' . $dateShow . '</h2>'; 
+        $dateShow = '<span class="dateShow">&nbsp;&nbsp; ' . $dateTitf . ' </span>';
+    } else {
+        $dateShow = '';
     }
-    if (isset($shortinfo) && $shortinfo != '') { $presentations = sia_shortinfof();
+    echo '<div id="saints">';
+    if (isset($titleOpt) && $titleOpt != '') { // если изменен заголовок
+        echo '<div class=titleOpt"><span class="titleOpt">' . sanitize_text_field($titleOpt) . '</span>';
+    }
+    echo $dateShow . '</div>'; // дата
+    if (isset($shortinfo) && $shortinfo != '') {
+        $presentations = sia_shortinfof();
         echo '<div class="presentations-s">' . $presentations . '</div>';
     }
     for ($s = 0; $s < $cnt; $s++) {
@@ -257,7 +260,7 @@ function sia_shortinfof()
     global $parDate;
     global $presentations;
 
-    if (isset($output) && $output !='') {
+    if (isset($output) && $output != '') {
         $html = get_transient($output);
         echo $html;
         return;
@@ -298,14 +301,21 @@ function sia_skalendar()
 //*** активация */
 function sia_saints_activate()
 {
+    
     $upload = wp_upload_dir();
     $upload_dir = $upload['basedir'];
     $upload_dir_cache = $upload_dir . '/saints-cache';
 
     if (!wp_mkdir_p($upload_dir_cache)) {
-        __("Не удалось создать каталог saints-cache","saints");
+        __("Не удалось создать каталог saints-cache", "saints");
     }
-    load_plugin_textdomain( 'saints', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+
+    $val = get_option('saints_option');
+    if (!isset($val['titleOpt'])) { $titleOpt = 'Жития Святых'; }
+    update_option('showicons', 1);
+    update_option('link', 1);
+
+    load_plugin_textdomain('saints', FALSE, basename(dirname(__FILE__)) . '/languages/');
 }
 register_activation_hook(__FILE__, 'sia_saints_activate');
 activate_plugins('saints/saints.php');
